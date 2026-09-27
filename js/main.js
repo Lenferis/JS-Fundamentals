@@ -52,3 +52,44 @@ function runInteractiveTask1() {
   alert(result);
 }
 runInteractiveTask1();
+
+
+function formattedPhone(phone) {
+  if (typeof phone !== 'string') {
+    return 'Помилка: Неправильний формат (очікується рядок).';
+  }
+
+  let cleaned = phone.trim();
+
+  if (cleaned.startsWith('+380') && cleaned.length === 13) {
+    cleaned = cleaned.slice(1); 
+  } else if (cleaned.startsWith('+80') && cleaned.length === 12) {
+    cleaned = '3' + cleaned.slice(1); 
+  } else if (cleaned.startsWith('80') && cleaned.length === 11) {
+    cleaned = '3' + cleaned; 
+  } else if (cleaned.startsWith('0') && cleaned.length === 10) {
+    cleaned = '38' + cleaned;
+  } else {
+    return 'Формат функції неправильний';
+  }
+
+  if (!/^\d{12}$/.test(cleaned)) {
+    return 'Формат функції неправильний';
+  }
+
+
+  const countryCode = cleaned.slice(0, 2); 
+  const operatorCode = cleaned.slice(2, 5); 
+  const part1 = cleaned.slice(5, 8);
+  const part2 = cleaned.slice(8, 10);
+  const part3 = cleaned.slice(10, 12); 
+
+  return `+${countryCode} (${operatorCode}) ${part1}-${part2}-${part3}`;
+}
+
+
+console.log(formattedPhone('+380664567890')); 
+console.log(formattedPhone('+80664567890'));  
+console.log(formattedPhone('80971234567'));   
+console.log(formattedPhone('0671234567'));    
+console.log(formattedPhone('12345'));         
