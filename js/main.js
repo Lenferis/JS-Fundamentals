@@ -92,4 +92,16 @@ console.log(formattedPhone('+380664567890'));
 console.log(formattedPhone('+80664567890'));  
 console.log(formattedPhone('80971234567'));   
 console.log(formattedPhone('0671234567'));    
-console.log(formattedPhone('12345'));         
+console.log(formattedPhone('12345'));
+
+function runInteractiveTask2() {
+  const userInput = prompt('Введіть номер телефону (наприклад, 0671234567 або +380664567890):');
+
+  if (userInput === null) return; 
+
+  const result = formattedPhone(userInput);
+  alert(result);
+}
+
+
+runInteractiveTask2();
